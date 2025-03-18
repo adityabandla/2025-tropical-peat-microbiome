@@ -12,7 +12,8 @@
 PATH=${HOME}/3_miniforge3/envs/bbmap/bin:${PATH}
 
 ## set project identifier and PATH to binaries
-project=${HOME}/2_scratch/1_datasets/6_2024_sarawak_oil_palm
+dataset=6_2024_sarawak_oil_palm
+project=${HOME}/2_scratch/1_datasets/${dataset}
 input=${PROJECT}/1_data/2_processed/1_adapter_trimmed
 
 ## adapter trimming
