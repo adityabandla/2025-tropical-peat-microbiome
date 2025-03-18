@@ -12,16 +12,17 @@
 PATH=${HOME}/3_miniforge3/envs/cutadapt/bin:${PATH}
 
 ## set project identifier and PATH to binaries
-PROJECT=${HOME}/2_scratch/1_datasets/6_2024_sarawak_oil_palm
-INP=${PROJECT}/1_data/1_raw
+dataset=6_2024_sarawak_oil_palm
+project=${HOME}/2_scratch/1_datasets/${dataset}
+input=${project}/1_data/1_raw
 
 ## adapter trimming
 ## set input and output directories
-OUT=${PROJECT}/1_data/2_processed/1_adapter_trimmed
-mkdir -p ${OUT}
+output=${project}/1_data/2_processed/1_adapter_trimmed
+mkdir -p ${output}
 
 ## loop through files and trim adapters
-R1=$(find ${INP} -mindepth 1 -maxdepth 1 | grep '_1.fastq.gz' | sort | sed -n ${PBS_ARRAY_INDEX}p) 
+R1=$(find ${input} -mindepth 1 -maxdepth 1 | grep '_1.fastq.gz' | sort | sed -n ${PBS_ARRAY_INDEX}p) 
 R2=${R1/_1/_2}
 
 cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC -e 0.2 -O 3 -n 1 -m 75 --max-n 0 --no-indels -j 24 \
